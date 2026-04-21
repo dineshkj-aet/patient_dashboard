@@ -1,9 +1,10 @@
-export async function fetchPatients(page = 0, limit = 10) {
+export async function fetchPatients(page = 0, limit = 6) {
   
   const res = await fetch(`http://localhost:8080/api/master/patients?page=${page}&size=${limit}`);
 
   if (!res.ok) {
-    throw new Error("Failed to fetch Patients");
+    const errorData = await res.json();
+    throw errorData; 
   }
 
   return res.json();
@@ -31,6 +32,22 @@ export async function updatePatient(patient) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(patient),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw errorData; 
+  }
+
+  return res.json();
+}
+
+export async function deletePatient(id) {
+  const res = await fetch(`http://localhost:8080/api/master/patients/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (!res.ok) {
