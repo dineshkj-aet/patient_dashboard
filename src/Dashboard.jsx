@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Users, Menu, X } from 'lucide-react';
-import Patients from "./Patients.jsx";
+import Patients from "./pages/Patients.jsx";
 
 
 const Dashboard = () => {
