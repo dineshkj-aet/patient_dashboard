@@ -1,6 +1,9 @@
+let PATIENT_SERVICE_BASE_URL = "http://localhost:8080/api/master/patients";
+
+// Retrieve all patients with pagination API call
 export async function fetchPatients(page = 0, limit = 6) {
   
-  const res = await fetch(`http://localhost:8080/api/master/patients?page=${page}&size=${limit}`);
+  const res = await fetch(`${PATIENT_SERVICE_BASE_URL}?page=${page}&size=${limit}`);
 
   if (!res.ok) {
     const errorData = await res.json();
@@ -10,8 +13,9 @@ export async function fetchPatients(page = 0, limit = 6) {
   return res.json();
 }
 
+// Create new patient API call
 export async function createPatient(patient) {
-  const res = await fetch("http://localhost:8080/api/master/patients", {
+  const res = await fetch(PATIENT_SERVICE_BASE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,8 +29,9 @@ export async function createPatient(patient) {
   }
 }
 
+//Update existing patients API call
 export async function updatePatient(patient) {
-  const res = await fetch(`http://localhost:8080/api/master/patients/${patient.id}`, {
+  const res = await fetch(`${PATIENT_SERVICE_BASE_URL}/${patient.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -42,8 +47,9 @@ export async function updatePatient(patient) {
   return res.json();
 }
 
+// Delete patients  API call
 export async function deletePatient(id) {
-  const res = await fetch(`http://localhost:8080/api/master/patients/${id}`, {
+  const res = await fetch(`${PATIENT_SERVICE_BASE_URL}/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

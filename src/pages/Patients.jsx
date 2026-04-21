@@ -5,17 +5,18 @@ import { fetchPatients, createPatient, updatePatient, deletePatient } from "../a
 
 function Patients() {
 
+  const queryClient = useQueryClient();
+
   const [search, setSearch] = useState("");
   const [sortField, setSortField] = useState(null); 
   const [sortOrder, setSortOrder] = useState("asc"); 
   const [isEdit, setIsEdit] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
-  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [formErrors, setFormErrors] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const queryClient = useQueryClient();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [limit, setLimit] = useState(6);
   const [tempLimit, setTempLimit] = useState(limit);
@@ -30,12 +31,15 @@ function Patients() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  //initially load the patient list paginated and default order
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["patients",page,limit],
     queryFn: () => fetchPatients(page,limit),
     keepPreviousData: true,
   });
 
+  // Client side sort by first name and last name and filter by first name and last name .
+  // process the patient list based on text on search box.
   const getProcessedPatients = () => {
     if (!data) return [];
 
@@ -96,6 +100,7 @@ function Patients() {
     setFormErrors([]); 
   };
 
+  //client side validate the inpud data and invoke update or create patient APIs
   const handleSave = () => {
     if (!form.firstName.trim()) {
       setFormErrors(["First Name is required"]);
@@ -122,13 +127,16 @@ function Patients() {
       return; 
     }
     if (isEdit) {
-      updateMutation.mutate(form); 
+      // calling update patient
+      updatePatientMutation.mutate(form); 
     } else {
-      createMutation.mutate(form); 
+      // calling craete patient
+      createPatientMutation.mutate(form); 
     }
   };
 
-  const createMutation = useMutation({
+  //create mutation for invoke create service and create new patient 
+  const createPatientMutation = useMutation({
     mutationFn: createPatient,
     onSuccess: () => {
       queryClient.invalidateQueries(["patients"]);
@@ -146,6 +154,7 @@ function Patients() {
     },
   });
 
+  //open the edit patient window with patient detillas
   const openEdit = (patient) => {
     setSelectedPatient(patient);
     setIsEdit(true);
@@ -161,17 +170,18 @@ function Patients() {
 
   const handleDeleteClick = (patient) => {
     setSelectedPatient(patient);
-    setConfirmOpen(true);
+    setIsDeleteOpen(true);
   };
 
   const charLength = `${selectedPatient?.firstName || ''}${selectedPatient?.lastName || ''}`.length;
     const confirmDelete = () => {
-    deleteMutation.mutate(selectedPatient.id);
-    setConfirmOpen(false);
+    deletePatientMutation.mutate(selectedPatient.id);
+    setIsDeleteOpen(false);
     setSelectedPatient(null);
   };
 
-  const updateMutation = useMutation({
+  //update mutation for invoke update service and update the patient 
+  const updatePatientMutation = useMutation({
     mutationFn: updatePatient,
     onSuccess: () => {
       queryClient.invalidateQueries(["patients"]);
@@ -188,7 +198,8 @@ function Patients() {
     },
   });
 
-  const deleteMutation = useMutation({
+  //delete mutation for invoke delete service and delete the patient 
+  const deletePatientMutation = useMutation({
   mutationFn: (id) => deletePatient(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -297,7 +308,7 @@ function Patients() {
           <input
                 placeholder={`${limit}`}
                 value={`${tempLimit}`}
-                    onChange={(e) => {const numericLimit = Number(e.target.value); if (!Number.isNaN(numericLimit) && numericLimit > 0) {setTempLimit(numericLimit); } }}
+                onChange={(e) => {const numericLimit = Number(e.target.value); if (!Number.isNaN(numericLimit) && numericLimit > 0) {setTempLimit(numericLimit); } }}
                 onBlur={() => {
                     const numericLimit = Number(tempLimit);
                   if (!Number.isNaN(numericLimit) && numericLimit > 0) {
@@ -390,7 +401,7 @@ function Patients() {
       />
     </div>
 
-        {/* Display Form Errors */}
+        {/* loop and Display Form Errors (erros from backend service call and client side validateios) */}
       {formErrors.length > 0 && (
         <div style={formErrorStyle}>
         <ul style={{ margin: 0, paddingLeft: "20px" }}>
@@ -605,7 +616,7 @@ function Patients() {
 {/* VIEW MODAL */}
 
 {/* DELETE CONFIRMATION */}
-  {confirmOpen && (
+  {isDeleteOpen && (
   <div
     style={{
       position: "fixed",
@@ -645,7 +656,7 @@ function Patients() {
 
         <button
           onClick={() => {
-            setConfirmOpen(false);
+            setIsDeleteOpen(false);
             setSelectedPatient(null);
           }}
           style={{
@@ -677,6 +688,7 @@ function Patients() {
   </div>
   )}
 {/* DELETE CONFIRMATION */}
+
     </>
   )};
 

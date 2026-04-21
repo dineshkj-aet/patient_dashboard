@@ -4,22 +4,21 @@ import Patients from "./pages/Patients.jsx";
 
 
 const Dashboard = () => {
+
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
     useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth < 1024;
-      setIsMobile(mobile);
-      if (!mobile) setSidebarOpen(false);
-    };
+      const handleResize = () => {
+        const mobile = window.innerWidth < 1024;
+        setIsMobile(mobile);
+        if (!mobile) setSidebarOpen(false);
+      };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    }, []);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
-
-
 
   return (
     <div style={containerStyle}>
@@ -28,7 +27,7 @@ const Dashboard = () => {
         <div onClick={toggleSidebar} style={overlayStyle} />
       )}
 
-{/* SIDE NAVIGATION MENU*/}
+{/* LEFT SIDE NAVIGATION MENU*/}
       <aside style={{
         ...sidebarStyle,
        
@@ -51,7 +50,7 @@ const Dashboard = () => {
           </div>
         </nav>
       </aside>
-{/* SIDE NAVIGATION MENU*/}
+{/* LEFT SIDE NAVIGATION MENU*/}
 
 {/* PATIENT CONTENT AREA */}
       <main style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
