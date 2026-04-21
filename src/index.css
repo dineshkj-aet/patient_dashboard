@@ -55,7 +55,7 @@ body {
 }
 
 #root {
-  width: 1126px;
+  width: 1326px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -119,5 +119,5 @@ code {
 body, html {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Prevents the unnecessary outer scroll */
+  overflow: hidden; 
 }
