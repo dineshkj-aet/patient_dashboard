@@ -1,16 +1,85 @@
-# React + Vite
+## 🖥️ Patient Application Screenshots
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 📊 Main Dashboard
 
-Currently, two official plugins are available:
+**URL:** http://localhost:5173/dashboard
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The dashboard consists of:
 
-## React Compiler
+- A **left-side navigation menu**
+- A **central panel** displaying a data grid
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#### 🔍 Grid Features
 
-## Expanding the ESLint configuration
+- **Search** by _First Name_ and _Last Name_  
+  _(Client-side search — no API calls involved)_
+- **Sorting** (ascending/descending) by:
+  - First Name
+  - Last Name
+  - City  
+    _(Client-side sorting — no API calls involved)_
+- **Pagination**
+  - Supports page navigation
+  - Allows users to change page size (items per page)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#### ⚙️ Actions Available
+
+- **View** – Displays full details of the patient
+- **Edit** – Opens the edit modal with patient details
+- **Delete** – Shows a confirmation dialog and performs a hard delete upon confirmation
+
+---
+
+### 🖼️ Dashboard View
+
+<img src="screenshots/Dashboard.png" width="600"/>
+
+### 📱 Dashboard – Responsive Layout
+
+<img src="screenshots/Dashboard_responsive.png" width="600"/>
+
+### 🖼️ Grid View - Responsive Layout
+
+## <img src="screenshots/grid_view_responsive.png" width="600"/>
+
+## ➕ Add Patient
+
+- Client-side validation is applied to required fields
+- Displays validation error messages for:
+  - Client-side validation
+  - Server-side validation
+  - Server-side error responses
+
+### 🖼️ Add Patient
+
+<img src="screenshots/Add-Patient.png" width="600"/>
+
+### 📱 Add Patient – Responsive Layout
+
+<img src="screenshots/Add-Patient_responsive.png" width="600"/>
+
+---
+
+## ✏️ Edit Patient
+
+- Same validations as the **Add Patient** screen are applied
+
+### 🖼️ Edit Patient
+
+<img src="screenshots/Edit_Patient.png" width="600"/>
+
+### 📱 Edit Patient – Responsive Layout
+
+<img src="screenshots/Edit_Patient_responsive.png" width="600"/>
+
+---
+
+## 🗑️ Delete Patient
+
+- Before deleting, a **confirmation dialog** is displayed with the patient’s name
+- Clicking **Delete** will permanently remove the patient from the database
+- Clicking **Cancel** will return to the grid without any changes
+
+### 🖼️ Delete Patient
+
+<img src="screenshots/Delete_patient.png" width="600"/>
