@@ -32,15 +32,15 @@ The dashboard consists of:
 
 ### 🖼️ Dashboard View
 
-<img src="screenshots/Dashboard.png" width="600"/>
+<img src="ScreenShots/Dashboard.png" width="600"/>
 
 ### 📱 Dashboard – Responsive Layout
 
-<img src="screenshots/Dashboard_responsive.png" width="600"/>
+<img src="ScreenShots/Dashboard_responsive.png" width="600"/>
 
 ### 🖼️ Grid View - Responsive Layout
 
-## <img src="screenshots/grid_view_responsive.png" width="600"/>
+<img src="ScreenShots/grid_view_responsive.png" width="600"/>
 
 ## ➕ Add Patient
 
@@ -52,11 +52,11 @@ The dashboard consists of:
 
 ### 🖼️ Add Patient
 
-<img src="screenshots/Add-Patient.png" width="600"/>
+<img src="ScreenShots/Add-Patient.png" width="600"/>
 
 ### 📱 Add Patient – Responsive Layout
 
-<img src="screenshots/Add-Patient_responsive.png" width="600"/>
+<img src="ScreenShots/Add-Patient_responsive.png" width="600"/>
 
 ---
 
@@ -66,11 +66,11 @@ The dashboard consists of:
 
 ### 🖼️ Edit Patient
 
-<img src="screenshots/Edit_Patient.png" width="600"/>
+<img src="ScreenShots/Edit_Patient.png" width="600"/>
 
 ### 📱 Edit Patient – Responsive Layout
 
-<img src="screenshots/Edit_Patient_responsive.png" width="600"/>
+<img src="ScreenShots/Edit_Patient_responsive.png" width="600"/>
 
 ---
 
@@ -82,4 +82,4 @@ The dashboard consists of:
 
 ### 🖼️ Delete Patient
 
-<img src="screenshots/Delete_patient.png" width="600"/>
+<img src="ScreenShots/Delete_patient.png" width="600"/>
