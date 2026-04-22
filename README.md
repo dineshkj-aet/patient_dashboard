@@ -36,7 +36,7 @@ The dashboard consists of:
 
 ### 📱 Dashboard – Responsive Layout
 
-<img src="ScreenShots/Dashboard_responsive.png" width="600"/>
+<img src="ScreenShots/Dashboard_Responsive.png" width="600"/>
 
 ### 🖼️ Grid View - Responsive Layout
 
@@ -66,11 +66,11 @@ The dashboard consists of:
 
 ### 🖼️ Edit Patient
 
-<img src="ScreenShots/Edit_Patient.png" width="600"/>
+<img src="ScreenShots/Edit_patient.png" width="600"/>
 
 ### 📱 Edit Patient – Responsive Layout
 
-<img src="ScreenShots/Edit_Patient_responsive.png" width="600"/>
+<img src="ScreenShots/Edit_patient_responsive.png" width="600"/>
 
 ---
 
